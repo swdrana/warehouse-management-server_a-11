@@ -67,9 +67,11 @@ const run = async () => {
       const updatedDoc = {
         $set: {
             name: updatedProduct.name ,
-            email: updatedProduct.newEmail ?  updatedProduct.newEmail :  updatedProduct.email,
+            email: updatedProduct.email,
+            productName: updatedProduct.productName,
             imgLink: updatedProduct.imgLink,
             quantity: updatedProduct.quantity,
+            pricePerItem: updatedProduct.pricePerItem,
             supplierName: updatedProduct.supplierName,
             description: updatedProduct.description,
         },
