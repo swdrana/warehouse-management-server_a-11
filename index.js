@@ -73,7 +73,7 @@ const run = async () => {
             quantity: updatedProduct.quantity,
             pricePerItem: updatedProduct.pricePerItem,
             supplierName: updatedProduct.supplierName,
-            description: updatedProduct.description,
+            description: updatedProduct.description,    
         },
       };
       const result = await productsCollection.updateOne(
@@ -83,6 +83,15 @@ const run = async () => {
       );
       res.send(result);
     });
+
+    // delete a product from database 
+    app.delete(`/deleteProduct/:id`, async (req, res) =>{
+        const id = req.params.id;
+        const query = {_id: ObjectId(id)};
+        console.log(query);
+        const result = await productsCollection.deleteOne(query);
+        res.send(result);
+    })
   } finally {
     // await client.close();
   }
