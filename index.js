@@ -48,6 +48,14 @@ const run = async () => {
       res.send(product);
     });
 
+    // load multiple item using user email 
+    app.get("/my-items/:searchEmail", async (req, res)=>{
+        const query = { email: req.params.searchEmail };
+        const cursor = productsCollection.find(query);
+        const findedProductsBasedOnEmail = await cursor.toArray();
+        res.send(findedProductsBasedOnEmail);
+    })
+    
     // add single item to database
     app.post("/add", async (req, res) => {
       const newItem = req.body;
@@ -97,7 +105,7 @@ const run = async () => {
   }
 };
 run().catch(console.dir);
-
+   
 /********************************************\
             MongoDB Connection End
 \********************************************/
