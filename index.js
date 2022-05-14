@@ -27,6 +27,10 @@ const client = new MongoClient(uri, {
 //   client.close();
 // });
 
+// for JWT 
+const accessToken = async (req, res, next) =>{
+
+}
 const run = async () => {
   try {
     await client.connect();
@@ -55,7 +59,7 @@ const run = async () => {
         const findedProductsBasedOnEmail = await cursor.toArray();
         res.send(findedProductsBasedOnEmail);
     })
-    
+
     // add single item to database
     app.post("/add", async (req, res) => {
       const newItem = req.body;
@@ -112,7 +116,7 @@ run().catch(console.dir);
 
 // Create root API
 app.get("/", (req, res) => {
-  res.send("Running server");
+  res.send("Running TechHub server");
 });
 
 // For Port & Listening
